@@ -52,7 +52,7 @@ app.post('/process_cake_order',function(req,res){
 	
 });
 
-
+app.get("/process_get", (req, res) => res.json(response));
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
