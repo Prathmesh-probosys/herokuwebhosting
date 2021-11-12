@@ -68,14 +68,14 @@ app.get('/process_get', function (req, res) {
 		req.session.count++;
 		//res.send("count = " +  req.session.count);
 		console.log("count = " +  req.session.count);
-		 res.json(""response )
+		 res.json(response );
 		
 	}
 	else{
 		req.session.count = 1;
 		//res.send(" welcome first time count = " +  req.session.count);
-		console.log" welcome first time count = " +  req.session.count);
-		 res.json(response )
+		console.log("welcome first time count = " +  req.session.count);
+		 res.json(response );
 	}
 	
   
