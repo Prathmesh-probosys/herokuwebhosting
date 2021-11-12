@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
+const session = require('express-session');
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//Set session
+
+app.use(session({secret : "Prathmesh@2020"}));
 
 app.listen(port, () => console.log("Server listening on port 3000!"));
 
@@ -53,8 +58,28 @@ app.post('/process_cake_order',function(req,res){
 	
 });
 
-app.get("/process_get", (req, res) => res.json(response));
+//app.get("/process_get", (req, res) => res.json(response));
 
+
+app.get('/process_get', function (req, res) {
+	
+	if(req.session.count)
+	{
+		req.session.count++;
+		//res.send("count = " +  req.session.count);
+		console.log("count = " +  req.session.count);
+		 res.json(""response )
+		
+	}
+	else{
+		req.session.count = 1;
+		//res.send(" welcome first time count = " +  req.session.count);
+		console.log" welcome first time count = " +  req.session.count);
+		 res.json(response )
+	}
+	
+  
+});
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
