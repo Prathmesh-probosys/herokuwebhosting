@@ -57,36 +57,14 @@ app.post('/process_cake_order',function(req,res){
 	
 });
 
-//app.get("/process_get", (req, res) => res.json(response));
+app.get("/process_get", (req, res) => res.json(response));
 
 
-app.get('/process_get', function (req, res) {
-	
-	if(req.session.count)
-	{
-		req.session.count++;
-		//res.send("count = " +  req.session.count);
-		console.log("count = " +  req.session.count);
-		 res.json(response );
-		
-	}
-	else{
-		req.session.count = 1;
-		//res.send(" welcome first time count = " +  req.session.count);
-		console.log("welcome first time count = " +  req.session.count);
-		 res.json(response );
-	}
-	
-  
-});
+
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
-  
-  
-  
-  
-  
+  res.send('Hello!');
+   
 });
 
 
