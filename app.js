@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
-const session = require('express-session');
+
+let request = require("request");
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//Set session
 
-app.use(session({secret : "Prathmesh@2020"}));
 
 app.listen(port, () => console.log("Server listening on port 3000!"));
 
@@ -82,7 +81,35 @@ app.get('/process_get', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.send('Hello!');
+  
+   let auth_url =
+    "https://sapcai-community.authentication.eu10.hana.ondemand.com/oauth/token";
+
+  return new Promise((resolve, reject) => {
+    request(
+      {
+        url: auth_url,
+        method: "POST",
+        auth: {
+          user: "sb-b656f7db-80d2-48c9-826d-23987d4e2f8a-CLONE-BS-DT!b40741|cai-production!b20881",
+          pass:
+            "binding-b656f7db-80d2-48c9-826d-23987d4e2f8a$Lan0TondMiJ5tqhK1TITC298Rb5RGvrSpyDmdqYRqOA=",
+        },
+      },
+      function (error, res) {
+        if (error) return reject(error);
+        if (res.statusCode != 200) {
+          return reject("Invalid Status Code");
+        }
+        let json = JSON.parse(res.body);
+        resolve(json.access_token);
+      }
+    );
+  }); 
 });
+
+
+
 
 
