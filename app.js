@@ -81,9 +81,19 @@ app.get('/process_get', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-  res.send('Hello!');
+  res.send('Hello World!');
   
-   let auth_url =
+  
+  
+  
+  
+});
+
+
+
+const getToken = function () {
+ console.log("Order details:");
+  let auth_url =
     "https://sapcai-community.authentication.eu10.hana.ondemand.com/oauth/token";
 
   return new Promise((resolve, reject) => {
@@ -106,10 +116,7 @@ app.get('/', function (req, res) {
         resolve(json.access_token);
       }
     );
-  }); 
-});
-
-
-
+  });
+};
 
 
